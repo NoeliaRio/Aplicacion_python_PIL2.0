@@ -1,0 +1,61 @@
+{% extends 'base/body.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block head %}
+<style>
+  ul {
+    list-style-type: none;
+  }
+</style>
+<link rel="stylesheet" href="{% static 'css\base.css' %}">
+<script src="{% static 'lib/html-duration-picker/html-duration-picker.min.js' %}"></script>
+{% endblock head %}
+
+{% block content %}
+<form action="." method="POST" enctype="multipart/form-data">
+  <div class="card card-primary">
+    {% include 'base/components/title.html' %}
+
+    <div class="card-body">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% if form.errors %}
+      <div class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h5><i class="icon fas fa-ban"></i>Ha ocurrido un error al intentar guardar el registro</h5>
+        <ul>
+          {% for field in form %}
+          {% for error in field.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+          {% endfor %}
+        </ul>
+      </div>
+      {% endif %}
+
+      {% block message %}
+      {% endblock message %}
+
+      {% block detail %}
+      {% endblock detail %}
+
+      {% block fields %}
+      {% endblock fields %}
+
+      {% for hidden in form.hidden_fields %}
+      {{ hidden }}
+      {% endfor %}
+
+    </div>
+    <div class="card-footer">
+      {% include 'base/components/buttons/save.html' %}
+      {% include 'base/components/buttons/cancel.html' %}
+    </div>
+  </div>
+</form>
+{% endblock content %}
+
+{% block js %}
+<script src="{% static 'lib/jquery.formset.js' %}"></script>
+{% endblock js %}

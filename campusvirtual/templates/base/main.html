@@ -1,0 +1,9 @@
+{% extends 'base/body.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+  {% include 'base/components/card.html' with title=production_title subtitle=production_subtitle bg_color=production_bg_color url=production_url %}
+  {% include 'base/components/card.html' with title=maintenance_title subtitle=maintenance_subtitle bg_color=maintenance_bg_color url=maintenance_url %}
+</div>
+  
+{% endblock content %}

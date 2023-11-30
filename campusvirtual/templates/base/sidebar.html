@@ -1,0 +1,155 @@
+{% load static %}
+{% load group_tags %}
+<aside class="main-sidebar sidebar-light-primary elevation-4">
+    <!--logo
+    <a href="#">
+        <img src="{% static 'img/logo-computrol.png' %}"
+             alt="Computrol Logo"
+             class="brand-image elevation-3 logo"
+             width="199"
+             height="70"/>
+    </a>-->
+    <div class="sidebar">
+        <!-- user names-->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="info user-names">
+                <a href="#" class="d-block">{{ request.user }}</a>
+            </div>
+        </div>
+        <!-- menú -->
+        {% if request.user.is_authenticated %}
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column"
+                    data-widget="treeview"
+                    role="menu"
+                    data-accordion="false">
+                    <!--Campus virtual-->
+                    {% if request.user|has_group:"Administrador" %}
+                        <li class="nav-header">Campus virtual universidad</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-friends"></i>
+                                <p>
+                                    Datos universitarios
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{% url 'campus:universidad_list' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ver universidades</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{% url 'campus:facultad_list' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ver facultades</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{% url 'campus:campus_list' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ver campus</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{% url 'campus:programa_list' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ver programas</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                    <!--Lugares-->
+                    {% if request.user|has_group:"Administrador" %}
+                        <li class="nav-header">Lugares</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-friends"></i>
+                                <p>
+                                    Lugares
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{% url 'campus:pais_list' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ver paises</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{% url 'campus:provincia_list' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ver provincias</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{% url 'campus:ciudad_list' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ver ciudades</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{% url 'campus:barrio_list' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ver barrios</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                    <!--users-->
+                    {% if request.user|has_group:"Administrador" %}
+                        <li class="nav-header">Configuración</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-friends"></i>
+                                <p>
+                                    Usuarios
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{% url 'users:user_list' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ver usuarios</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'users:genero_list' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ver géneros</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'users:tipouser_list' %}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ver tipos de usuario</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+    </div>
+</aside>

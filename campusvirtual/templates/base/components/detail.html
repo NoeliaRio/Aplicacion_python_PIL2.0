@@ -1,0 +1,42 @@
+{% extends "base/body.html" %}
+{% block head %}
+    {% block head_detail %}
+    {% endblock head_detail %}
+{% endblock head %}
+{% block content %}
+    <section>
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>{{ object }}</h1>
+            </div>
+            {% if list_url %}
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <a href="{{ list_url }}">{{ entity }}</a>
+                        </li>
+                        <li class="breadcrumb-item active">{{ object }}</li>
+                    </ol>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+    <section class="content">
+        {% block data %}
+        {% endblock data %}
+        <div class="card-footer">
+            {% if create_url %}
+                {% include 'base/components/buttons/create.html' %}
+            {% endif %}
+            {% if edit_button_url %}
+                {% include 'base/components/buttons/edit.html' with id=object.id %}
+            {% endif %}
+            {% if delete_button_url %}
+                {% include 'base/components/buttons/delete.html' with id=object.id %}
+            {% endif %}
+            {% if return_button_url %}
+                {% include 'base/components/buttons/return.html' %}
+            {% endif %}
+        </div>
+    </section>
+{% endblock content %}

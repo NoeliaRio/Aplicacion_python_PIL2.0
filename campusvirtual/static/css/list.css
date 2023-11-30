@@ -1,0 +1,14 @@
+.colnames {
+    background-color: #2E4053;
+    color: white;
+    font-weight: bolder;
+}
+
+/* Color de fila impar */
+tr:nth-child(even) {
+    background-color: #BDFFE9;
+}
+
+td {
+    text-align: center;
+}

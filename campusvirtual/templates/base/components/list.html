@@ -1,0 +1,58 @@
+{% extends 'base/body.html' %}
+{% load static %}
+
+{% block head %}
+<!--<link rel="stylesheet" href="{% static 'css\list.css' %}">-->
+<link rel="stylesheet" href="{% static 'css\base.css' %}">
+{% endblock head %}
+
+
+{% block content %}
+<div class="container">
+    <!--filter-->
+    <div class="row">
+        <div class="col-md-6">
+            {% block filter %}
+            {% endblock filter %}
+        </div>
+        <div class="col-md-6">
+            {% block references %}
+            {% endblock references %}
+        </div>
+    </div>
+
+    {% block message %}
+    {% endblock message %}
+
+    <!--buttons-->
+    <div class="card-footer">
+        <div class="float-right">
+            {% block buttons_list %}
+            {% endblock buttons_list %}
+        </div>
+    </div>
+
+    <div class="card card-primary">
+        <!--table-->
+        {% include 'base/components/title.html' %}
+        <div class="card-body">
+            <table class="table" id="data">
+                <thead class="colnames">
+                    {% block columns %}
+                    {% endblock columns %}
+                </thead>
+                <tbody>
+                    {% block rows %}
+                    {% endblock rows %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block js %}
+{% endblock js %}

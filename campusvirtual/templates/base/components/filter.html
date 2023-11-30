@@ -1,0 +1,25 @@
+{% load bootstrap %}
+
+<form action="." method="GET" enctype="multipart/form-data" id="filter-form">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title" data-toggle="collapse" href="#filter" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fas fa-filter"></i>
+                {{ filter_title }}
+            </h3>
+        </div>
+        <div>
+            {% include 'base/components/form_errors.html' %}
+        </div>
+        <div class="card-body collapse" id="filter">
+            <input type="hidden" name="action" value="searchdata"/><!--para solicitudes ajax-->
+            {{ filterset.form|bootstrap }}
+        </div>
+        <div class="card-footer collapse" id="filter">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-search"></i>
+                Buscar
+            </button>
+        </div>
+    </div>
+</form>

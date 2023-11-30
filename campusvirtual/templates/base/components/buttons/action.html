@@ -1,0 +1,13 @@
+<div class="btn">
+  <a 
+    href="{{ url }}/{{ id }}" 
+    class="btn btn-{{ color }}"
+    {% if blank %}
+      target="_blank"
+    {% endif %}
+      
+  >
+    <i class="{{ icon }}"></i>
+    {{ txt }}
+  </a>
+</div>

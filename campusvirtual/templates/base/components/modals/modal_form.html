@@ -1,0 +1,84 @@
+<!-- Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-focus="true">
+    <form action="." method="POST" enctype="multipart/form-data">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">
+                        <b>
+                            <i class="fas fa-search"></i>
+                            <span></span>
+                        </b>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+				<div class="modal-body">
+					<div class="card card-primary">            
+						<div class="card-body">
+							{% csrf_token %}
+                            <div id="detailModal"></div>
+                            <div id="messageModal"></div>
+                            <div id="fieldsModal"></div>
+                            <div id="hiddenFieldsModal"></div>
+							<input type="hidden" name="action" id='id_action'>
+							<input type="hidden" name="id" id="id_id">
+						</div>
+					</div>
+            	</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-focus="true">
+    <form action="." method="POST" enctype="multipart/form-data">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <b>
+                            <i class="fas fa-search"></i>
+                            <span></span>
+                        </b>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+				<div class="modal-body">
+					<div class="card card-primary">            
+						<div class="card-body">
+							{% csrf_token %}
+							
+							{% block message %}
+							{% endblock message %}
+				
+							{% block detail %}
+							{% endblock detail %}
+				
+							<input type="hidden" name="action" id='id_action'>
+							<input type="hidden" name="id" id="id_id">
+							{{ planned_start_form.as_p }}
+				
+							{% for hidden in form.hidden_fields %}
+							{{ hidden }}
+							{% endfor %}
+				
+						</div>
+					</div>
+            	</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

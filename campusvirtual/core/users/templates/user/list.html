@@ -1,0 +1,43 @@
+{% extends 'base/components/list.html' %}
+{% load static %}
+
+{% block columns %}
+<tr>
+    <td>Nombre de usuario</td>
+    <td>Email</td>
+    <td>Nombres</td>
+    <td>Apellidos</td>
+    <td>Área</td>
+    <td>Rol</td>
+    <td>Usuario activo</td>
+    <td>Fecha de creación</td>
+    <td>Fecha de modificación</td>
+    <td>Fecha de último inicio de sesión</td>
+    <td>Acciones</td>
+</tr>
+{% endblock columns %}
+
+{% block buttons_list %}
+{% include 'base/components/buttons/create.html' %}
+{% include 'base/components/buttons/refresh.html' %}
+{% endblock buttons_list %}
+
+{% block rows %}
+{% for user in object_list %}
+    <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.groups.all|join:", " }}</td>
+        <td>{{ user.is_active }}</td>
+        <td>{{ user.date_joined }}</td>
+        <td>{{ user.updated_at }}</td>
+        <td>{{ user.last_login }}</td>
+        <td>
+            {% include 'base/components/buttons/edit.html' with id=user.id %}
+            {% include 'base/components/buttons/delete.html' with id=user.id %}
+        </td>
+    </tr>
+{% endfor %}
+{% endblock rows %}

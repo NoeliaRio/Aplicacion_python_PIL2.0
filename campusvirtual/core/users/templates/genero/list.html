@@ -1,0 +1,24 @@
+{% extends 'base/components/list.html' %}
+{% load static %}
+
+{% block columns %}
+<tr>
+    <td>Id</td>
+    <td>Nombre</td>
+    <td>Acciones</td>
+</tr>
+{% endblock columns %}
+
+{% block buttons_list %}
+{% include 'base/components/buttons/refresh.html' %}
+{% endblock buttons_list %}
+
+{% block rows %}
+{% for genero in object_list %}
+    <tr>
+        <td>{{ genero.id }}</td>
+        <td>{{ genero.name }}</td>
+        <td></td>
+    </tr>
+{% endfor %}
+{% endblock rows %}

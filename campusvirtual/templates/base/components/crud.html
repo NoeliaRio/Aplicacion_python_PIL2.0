@@ -1,0 +1,118 @@
+{% extends 'base/body.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block head %}
+<style>
+    ul {
+        list-style-type: none;
+    }
+</style>
+<link rel="stylesheet" href="{% static 'css\base.css' %}">
+<script src="{% static 'js\crud.js' %}"></script>
+<script src="{% static 'lib\jquery.formset.js' %}"></script>
+
+<!--Permite utilizar variables enviadas desde la vista-->
+<script>
+    var createTitle = "{{ create_title }}",
+        updateTitle = "{{ update_title }}",
+        formset_prefix = "{{ formset.prefix }}",
+        userId = "{{ request.user.id }}";
+</script> 
+{% block head_crud %}
+{% endblock head_crud %}
+    
+{% endblock head %}
+
+{% block content %}
+<div class="container">
+    <!--filter-->
+    <div class="row">
+        <div class="col-md-6">
+            {% block filter %}
+            {% endblock filter %}
+        </div>
+        <div class="col-md-6">
+            {% block references %}
+            {% endblock references %}
+        </div>
+    </div>
+
+    <!--buttons-->
+    <div class="card-footer">
+        <div class="float-right">
+            {% block buttons_list %}
+            {% endblock buttons_list %}
+        </div>
+    </div>
+
+    <div class="card card-primary">
+        {% include 'base/components/title.html' %}
+        <!--table-->
+        <div class="card-body">
+            <table class="table" id="data">
+                <thead class="colnames" style="text-align: center;">
+                    {% block columns %}
+                    {% endblock columns %}
+                </thead>
+                <tbody>
+                    {% block rows %}
+                    {% endblock rows %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+<!-- Modal -->
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-focus="true">
+    <form action="." method="POST" enctype="multipart/form-data">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <b>
+                            <i class="fas fa-search"></i>
+                            <span></span>
+                        </b>
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                <div class="card card-primary">            
+                    <div class="card-body">
+                        {% csrf_token %}
+                        
+                        {% block message %}
+                        {% endblock message %}
+            
+                        {% block detail %}
+                        {% endblock detail %}
+            
+                        <input type="hidden" name="action">
+                        <input type="hidden" name="id" id="id_id">
+                        {% block fields %}
+                        {% endblock fields %}
+            
+                        {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                        {% endfor %}
+            
+                    </div>
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">{{ save_button }}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock js %}
+
+    

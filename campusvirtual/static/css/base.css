@@ -1,0 +1,49 @@
+/* Base styles */
+
+.logo{
+  width: 100%;
+}
+
+.user-names{
+  font-weight: bolder;
+}
+
+a.fill-div {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+}
+
+thead {
+  background-color: #2E4053;
+  color: white;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.rownames td:nth-child(1) {
+  background-color: #0a3f22;
+  color: white;
+  font-weight: bolder;
+}
+
+/* Color de fila impar */
+tbody tr:nth-child(even) {
+  background-color: #BDFFE9;
+}
+
+/* Color de fila par */
+tbody tr:nth-child(odd){
+  background-color: #fff5bd;
+}
+
+td {
+  text-align: center;
+}
+
+/*Confirm btn*/
+.confirm-btn{
+  font-size: 4rem !important;
+  text-align: center;
+}
